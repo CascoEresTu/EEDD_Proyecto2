@@ -14,6 +14,7 @@ public class Person {
     private String nombre;
     private int edad;
     private int salario;
+    private String puesto;
 
     public Person(String nombre, int edad, int salario) {
         this.nombre = nombre;
@@ -21,8 +22,22 @@ public class Person {
         this.salario = salario;
     }
 
+    public Person(String nombre, int edad, int salario, String puesto) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.salario = salario;
+        this.puesto = puesto;
+    }
+
+    public String getPuesto() {
+        return puesto;
+    }
+
+    public void setPuesto(String puesto) {
+        this.puesto = puesto;
+    }
+
     Person() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getNombre() {
@@ -51,7 +66,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "NOMBRE: " + nombre + " EDAD: " + edad + " SALARIO: " + salario;
+        return "NOMBRE: " + nombre + " |EDAD: " + edad + " |SALARIO: " + salario+" |PUESTO: "+puesto;
     }
 
 }

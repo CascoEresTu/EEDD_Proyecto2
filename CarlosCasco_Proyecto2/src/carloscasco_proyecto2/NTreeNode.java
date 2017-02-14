@@ -6,6 +6,13 @@
 package carloscasco_proyecto2;
 
 /**
+ * Esta implementacion de Nodo tiene 3 mutadores:
+ * int pos_parent: Este entero representa la informacion del nodo padre 
+ *                 en la lista.
+ * Object Data:  Representa que informacion queremos almacenaren nuestro nodo.
+ * int num_heriarchy: Nivel de jerarquía en nuestro arbol.En esta implementacion
+ * se comienza en 0, como el nivel mas alto, y se sigue ascendente mente a los 
+ * niveles mas bajos. 
  *
  * @author k_k_r
  */

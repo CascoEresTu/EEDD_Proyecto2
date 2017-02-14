@@ -21,21 +21,58 @@ public class CarlosCasco_Proyecto2 {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        NTree tree = null;
-        ReadFile(tree);
+        Scanner sc = new Scanner(System.in);
+        NTree tree = new NTree();
+        
+        int op = 0;
+        System.out.println("EEDD: Proyecto # 2");
+        
+        while (op != 2) {
+            System.out.println("1._Iniciar Ejercicio");
+            System.out.println("2._salir");
+            op = sc.nextInt();
+
+            if (op == 1) {
+                ReadFile(tree);
+            }
+
+        }
+        System.out.println("Adiós :)");
+    }
+
+    static void print(NTree tree) {
+        String print = "";
+        System.out.println(tree.getTree().size());
+        for (int i = 0; i < tree.getTree().size(); i++) {
+            
+            for (int j = 0; j < tree.getTree().get(i).getNum_heriarchy(); j++) {
+                print += "\t";
+            }
+            print += tree.getTree().get(i).getData().toString();
+            System.out.println(print);
+            print = "";
+
+        }
 
     }
 
     static int FindNearestParent(NTree tree, int actual_heriarchy_level) {
+        /*
+        En esta función, nos aprovechamos de nuestro mutador
+        de nivel de jerarquía. se encuentra el primer valor menor
+        a nuestra jerarquía actual en la lista, y así se encuentra el padre
+        de nuestro NTreeNode;
+        
+        */
         if (tree.getTree().isEmpty()) {
             return -1;
         } else if (tree.getTree().size() > 0) {
 
             for (int i = tree.getTree().size(); i >= 0; i--) {
-               
-                if (tree.getTree().get(i-1).getNum_heriarchy()
-                        < actual_heriarchy_level ) {
-                    return i-1;
+
+                if (tree.getTree().get(i - 1).getNum_heriarchy()
+                        < actual_heriarchy_level) {
+                    return i - 1;
                 }
             }
         }
@@ -51,13 +88,14 @@ public class CarlosCasco_Proyecto2 {
         sc.useDelimiter("[|]");
 
         while (sc.hasNext()) {
-            temp = new Person(sc.next(), sc.nextInt(), sc.nextInt());
+            temp = new Person(sc.next(), sc.nextInt(), sc.nextInt(),sc.next());
         }
         return temp;
     }
 
     static void ReadFile(NTree tree) throws IOException {
-
+        Scanner sc = new Scanner(System.in);
+        
         tree = new NTree();
         FileReader fr;
         fr = new FileReader("./data.txt");
@@ -77,10 +115,20 @@ public class CarlosCasco_Proyecto2 {
                             FindNearestParent(tree, cont_espacios / 4), Load(line), cont_espacios / 4));
         }
 
+        
+        System.out.println("Se imprimen los datos de la lista,");
+        System.out.println("Aquí se ve todo lo que contiene cada nodo.");
         for (int i = 0; i < tree.getTree().size(); i++) {
             System.out.println(tree.getTree().get(i).toString());
         }
-
+        
+        int c = 0 ;
+        System.out.println("Desea imprimir? [1|0]");
+        
+        c = sc.nextInt();
+        if (c== 1) {
+            print(tree);
+        }
     }
 
 }
